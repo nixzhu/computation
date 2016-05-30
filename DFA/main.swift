@@ -1,6 +1,15 @@
 
 // xcrun swiftc *.swift -o testDFA && ./testDFA
 
+//           b            a           a,b  
+//         ┌───┐        ┌───┐        ┌───┐ 
+//         │   ▼        │   ▼        │   ▼ 
+//        ┌─────┐  a   ┌─────┐  b   ╔═════╗
+//  ─────▶│  1  │─────▶│  2  │─────▶║  3  ║
+//        └─────┘      └─────┘      ╚═════╝
+
+// accepts string contains "ab"
+
 let rules = [
     DFA.Rule(state: 1, character: "a", nextState: 2),
     DFA.Rule(state: 1, character: "b", nextState: 1),
