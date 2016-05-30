@@ -1,14 +1,14 @@
 
-// xcrun swiftc *.swift -o testDFA && ./testDFA
+// xcrun swiftc *.swift ../Rule.swift -o testDFA && ./testDFA
 
-//           b            a           a,b  
-//         ┌───┐        ┌───┐        ┌───┐ 
-//         │   ▼        │   ▼        │   ▼ 
-//        ┌─────┐  a   ┌─────┐  b   ╔═════╗
-//  ─────▶│  1  │─────▶│  2  │─────▶║  3  ║
-//        └─────┘      └─────┘      ╚═════╝
+//          b            a           a,b  
+//        ┌───┐        ┌───┐        ┌───┐ 
+//        │   ▼        │   ▼        │   ▼ 
+//       ┌─────┐  a   ┌─────┐  b   ╔═════╗
+// ─────▶│  1  │─────▶│  2  │─────▶║  3  ║
+//       └─────┘      └─────┘      ╚═════╝
 
-// accepts string contains "ab"
+print("accepts string which contains \"ab\":")
 
 let rules = [
     Rule(state: 1, character: "a", nextState: 2),
