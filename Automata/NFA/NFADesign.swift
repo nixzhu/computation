@@ -5,8 +5,9 @@ struct NFADesign {
     let acceptStates: Set<State>
     let ruleBook: RuleBook
 
-    func generatNFA() -> NFA {
-        return NFA(currentStates: [startState], acceptStates: acceptStates, ruleBook: ruleBook)
+    func generatNFA(currentStates currentStates: Set<State>? = nil) -> NFA {
+        let currentStates = currentStates ?? [startState]
+        return NFA(currentStates: currentStates, acceptStates: acceptStates, ruleBook: ruleBook)
     }
 
     func canAcceptsString(string: String) -> Bool {
