@@ -95,9 +95,13 @@ do {
     print(nfa.currentStates)
 
     let simulation = NFASimulation(nfaDesign: nfaDesign)
-    print(simulation.nextStates(states: [1, 2], character: "a"))
-    print(simulation.nextStates(states: [1, 2], character: "b"))
-    print(simulation.nextStates(states: [3, 2], character: "b"))
-    print(simulation.nextStates(states: [1, 3, 2], character: "b"))
-    print(simulation.nextStates(states: [1, 3, 2], character: "a"))
+    print(simulation.nextState(state: [1, 2], character: "a"))
+    print(simulation.nextState(state: [1, 2], character: "b"))
+    print(simulation.nextState(state: [3, 2], character: "b"))
+    print(simulation.nextState(state: [1, 3, 2], character: "b"))
+    print(simulation.nextState(state: [1, 3, 2], character: "a"))
+
+    print(ruleBook.alphabet)
+    print(simulation.rulesFor(state: [1, 2]))
+    print(simulation.rulesFor(state: [3, 2]))
 }

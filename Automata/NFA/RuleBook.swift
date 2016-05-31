@@ -3,6 +3,10 @@ struct RuleBook {
 
     let rules: [Rule]
 
+    var alphabet: [Character] {
+        return Array(Set(rules.map({ $0.character }).flatMap({ $0 })))
+    }
+
     func nextStates(states states: Set<State>, character: Character?) -> Set<State> {
         return Set(states.map({ followStatesFor(state: $0, character: character) }).flatMap({ $0 }))
     }
