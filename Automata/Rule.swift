@@ -1,38 +1,7 @@
 
-public typealias State = Int
+//public typealias State = Int
 
-// public func ==(lhs: State, rhs: State) -> Bool {
-//     return lhs.name == rhs.name
-// }
-// public struct State: Hashable {
-//     let states: Set<Int>
-//     public var hashValue : Int { return states.hashValue }
-//
-//     public init(state: Int) {
-//         self.states = [state]
-//     }
-//
-//     public init(states: Set<Int>) {
-//         self.states = states
-//     }
-// }
-//
-// extension State: IntegerLiteralConvertible {
-//
-//     public init(integerLiteral state: Int) {
-//         self.states = [state]
-//         print("***")
-//     }
-// }
-//
-// extension State: ArrayLiteralConvertible {
-//
-//     public init(arrayLiteral states: Int...) {
-//         self.states = Set(states)
-//     }
-// }
-
-public struct Rule {
+public struct Rule<State: Hashable> {
 
     let state: State
     let character: Character?

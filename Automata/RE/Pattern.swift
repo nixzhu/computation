@@ -1,7 +1,7 @@
 
 import Foundation
 
-private func uniqueState() -> State {
+private func uniqueState() -> Int {
     return NSUUID().UUIDString.hashValue
 }
 
@@ -45,12 +45,12 @@ enum Pattern {
         }
     }
 
-    var nfaDesign: NFADesign {
+    var nfaDesign: NFADesign<Int> {
         switch self {
         case .Empty:
             let startState = uniqueState()
-            let acceptStates: Set<State> = [startState]
-            let ruleBook = RuleBook(rules: [])
+            let acceptStates: Set<Int> = [startState]
+            let ruleBook = RuleBook<Int>(rules: [])
             return NFADesign(startState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
         case .Literal(let character):
             let startState = uniqueState()

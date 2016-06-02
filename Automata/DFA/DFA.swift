@@ -1,9 +1,9 @@
 
-struct DFA {
+struct DFA<State: Hashable> {
 
     var currentState: State
     let acceptStates: Set<State>
-    let ruleBook: RuleBook
+    let ruleBook: DFARuleBook<State>
 
     var accepting: Bool {
         return acceptStates.contains(currentState)

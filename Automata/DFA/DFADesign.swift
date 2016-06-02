@@ -1,11 +1,11 @@
 
-struct DFADesign {
+struct DFADesign<State: Hashable> {
 
     let startState: State
     let acceptStates: Set<State>
-    let ruleBook: RuleBook
+    let ruleBook: DFARuleBook<State>
 
-    func generatDFA() -> DFA {
+    func generatDFA() -> DFA<State> {
          return DFA(currentState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
     }
 

@@ -22,7 +22,7 @@ do {
         Rule(state: 3, character: "b", nextState: 4),
     ]
 
-    let ruleBook = RuleBook(rules: rules)
+    let ruleBook = NFARuleBook(rules: rules)
 
     ["bab", "bbbbb", "bbabb"].forEach({
         let nfaDesign = NFADesign(startState: 1, acceptStates: [4], ruleBook: ruleBook)
@@ -63,7 +63,7 @@ do {
         Rule(state: 6, character: "a", nextState: 4),
     ]
 
-    let ruleBook = RuleBook(rules: rules)
+    let ruleBook = NFARuleBook(rules: rules)
 
     ["a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa"].forEach({
         let nfaDesign = NFADesign(startState: 1, acceptStates: [2, 4], ruleBook: ruleBook)
@@ -73,6 +73,8 @@ do {
 }
 
 do {
+    print("convert NFA to DFA:")
+
     let rules = [
         Rule(state: 1, character: "a", nextState: 1),
         Rule(state: 1, character: "a", nextState: 2),
@@ -82,26 +84,16 @@ do {
         Rule(state: 3, character: nil, nextState: 2),
     ]
 
-    let ruleBook = RuleBook(rules: rules)
+    let ruleBook = NFARuleBook(rules: rules)
 
     let nfaDesign = NFADesign(startState: 1, acceptStates: [3], ruleBook: ruleBook)
 
-    print(nfaDesign.generatNFA().currentStates)
-    print(nfaDesign.generatNFA(currentStates: [2]).currentStates)
-    print(nfaDesign.generatNFA(currentStates: [3]).currentStates)
-
-    var nfa = nfaDesign.generatNFA(currentStates: [2, 3])
-    nfa.readCharacter("b")
-    print(nfa.currentStates)
-
     let simulation = NFASimulation(nfaDesign: nfaDesign)
-    print(simulation.nextState(state: [1, 2], character: "a"))
-    print(simulation.nextState(state: [1, 2], character: "b"))
-    print(simulation.nextState(state: [3, 2], character: "b"))
-    print(simulation.nextState(state: [1, 3, 2], character: "b"))
-    print(simulation.nextState(state: [1, 3, 2], character: "a"))
 
-    print(ruleBook.alphabet)
-    print(simulation.rulesFor(state: [1, 2]))
-    print(simulation.rulesFor(state: [3, 2]))
+    let dfaDesign = simulation.generateDFADesign()
+
+    ["aaa", "aab", "bbbabb"].forEach({
+        let can = dfaDesign.canAcceptsString($0)
+        print("\($0)\t\(can)")
+    })
 }
