@@ -50,13 +50,13 @@ enum Pattern {
         case .Empty:
             let startState = uniqueState()
             let acceptStates: Set<Int> = [startState]
-            let ruleBook = RuleBook<Int>(rules: [])
+            let ruleBook = NFARuleBook<Int>(rules: [])
             return NFADesign(startState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
         case .Literal(let character):
             let startState = uniqueState()
             let acceptState = uniqueState()
             let rule = Rule(state: startState, character: character, nextState: acceptState)
-            let ruleBook = RuleBook(rules: [rule])
+            let ruleBook = NFARuleBook(rules: [rule])
             return NFADesign(startState: startState, acceptStates: [acceptState], ruleBook: ruleBook)
         case .Concatenate(let firstPart, let secondPart):
             let firstPartNFADesign = firstPart.nfaDesign
@@ -67,7 +67,7 @@ enum Pattern {
             let extraRules = firstPartNFADesign.acceptStates.map({
                 Rule(state: $0, character: nil, nextState: secondPartNFADesign.startState)
             })
-            let ruleBook = RuleBook(rules: rules + extraRules)
+            let ruleBook = NFARuleBook(rules: rules + extraRules)
             return NFADesign(startState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
         case .Choose(let firstPart, let secondPart):
             let firstPartNFADesign = firstPart.nfaDesign
@@ -78,7 +78,7 @@ enum Pattern {
             let extraRules = [firstPartNFADesign, secondPartNFADesign].map({
                 Rule(state: startState, character: nil, nextState: $0.startState)
             })
-            let ruleBook = RuleBook(rules: rules + extraRules)
+            let ruleBook = NFARuleBook(rules: rules + extraRules)
             return NFADesign(startState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
         case .Repeat(let pattern):
             let patternNFADesign = pattern.nfaDesign
@@ -88,7 +88,7 @@ enum Pattern {
             let extraRules = patternNFADesign.acceptStates.map({
                 Rule(state: $0, character: nil, nextState: patternNFADesign.startState)
             }) + [Rule(state: startState, character: nil, nextState: patternNFADesign.startState)]
-            let ruleBook = RuleBook(rules: rules + extraRules)
+            let ruleBook = NFARuleBook(rules: rules + extraRules)
             return NFADesign(startState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
         }
     }

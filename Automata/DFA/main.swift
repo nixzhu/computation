@@ -1,9 +1,9 @@
 
 // xcrun swiftc *.swift ../Rule.swift -o testDFA && ./testDFA
 
-//          b            a           a,b  
-//        ┌───┐        ┌───┐        ┌───┐ 
-//        │   ▼        │   ▼        │   ▼ 
+//          b            a           a,b
+//        ┌───┐        ┌───┐        ┌───┐
+//        │   ▼        │   ▼        │   ▼
 //       ┌─────┐  a   ┌─────┐  b   ╔═════╗
 // ─────▶│  1  │─────▶│  2  │─────▶║  3  ║
 //       └─────┘      └─────┘      ╚═════╝
@@ -19,7 +19,7 @@ let rules = [
     Rule(state: 3, character: "b", nextState: 3),
 ]
 
-let ruleBook = RuleBook(rules: rules)
+let ruleBook = DFARuleBook(rules: rules)
 
 ["a", "baa", "baba"].forEach({
     let dfaDesign = DFADesign(startState: 1, acceptStates: [3], ruleBook: ruleBook)

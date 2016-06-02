@@ -1,5 +1,5 @@
 
-// xcrun swiftc *.swift ../Rule.swift -o testNFA && ./testNFA
+// xcrun swiftc *.swift ../Rule.swift ../DFA/DFA.swift ../DFA/DFADesign.swift ../DFA/DFARuleBook.swift -o testNFA && ./testNFA
 
 do {
 

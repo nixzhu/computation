@@ -1,5 +1,5 @@
 
-// xcrun swiftc *.swift ../NFA/NFA.swift ../NFA/NFADesign.swift ../NFA/RuleBook.swift ../Rule.swift -o testRE && ./testRE
+// xcrun swiftc *.swift ../NFA/NFA.swift ../NFA/NFADesign.swift ../NFA/NFARuleBook.swift ../Rule.swift -o testRE && ./testRE
 
 let pattern = Pattern.Repeat(pattern:
     Pattern.Concatenate(
