@@ -1,4 +1,6 @@
 
+// @nixzhu (zhuhongxu@gmail.com)
+
 struct DFARuleBook<State: Hashable> {
 
     let rules: [Rule<State>]

@@ -1,4 +1,6 @@
 
+// @nixzhu (zhuhongxu@gmail.com)
+
 struct DFA<State: Hashable> {
 
     var currentState: State

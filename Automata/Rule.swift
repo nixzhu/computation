@@ -1,5 +1,5 @@
 
-//public typealias State = Int
+// @nixzhu (zhuhongxu@gmail.com)
 
 public struct Rule<State: Hashable> {
 

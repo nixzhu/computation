@@ -1,4 +1,6 @@
 
+// @nixzhu (zhuhongxu@gmail.com)
+
 struct NFADesign<State: Hashable> {
 
     let startState: State

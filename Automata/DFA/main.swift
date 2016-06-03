@@ -1,4 +1,6 @@
 
+// @nixzhu (zhuhongxu@gmail.com)
+
 // xcrun swiftc *.swift ../Rule.swift -o testDFA && ./testDFA
 
 //          b            a           a,b

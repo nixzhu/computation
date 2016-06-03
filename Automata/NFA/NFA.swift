@@ -1,4 +1,6 @@
 
+// @nixzhu (zhuhongxu@gmail.com)
+
 struct NFA<State: Hashable> {
 
     var currentStates: Set<State>

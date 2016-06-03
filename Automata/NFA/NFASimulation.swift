@@ -1,4 +1,6 @@
 
+// @nixzhu (zhuhongxu@gmail.com)
+
 struct NFASimulation {
 
     let nfaDesign: NFADesign<Int>

@@ -1,4 +1,6 @@
 
+// @nixzhu (zhuhongxu@gmail.com)
+
 // xcrun swiftc *.swift ../NFA/NFA.swift ../NFA/NFADesign.swift ../NFA/NFARuleBook.swift ../Rule.swift -o testRE && ./testRE
 
 let pattern = Pattern.Repeat(pattern:
