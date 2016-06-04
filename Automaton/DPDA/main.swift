@@ -1,7 +1,7 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-var configuration = PDAConfiguration(state: 1, stack: Stack(contents: ["$"]))
+let configuration = PDAConfiguration(state: 1, stack: Stack(contents: ["$"]))
 
 let rules = [
     PDARule(state: 1, character: "(", nextState: 2, popCharacter: "$", pushCharacters: ["b", "$"]),
@@ -11,9 +11,9 @@ let rules = [
 ]
 let ruleBook = DPDARuleBook(rules: rules)
 
-configuration = ruleBook.nextConfiguration(configuration: configuration, character: "(")!
-print(configuration)
-configuration = ruleBook.nextConfiguration(configuration: configuration, character: "(")!
-print(configuration)
-configuration = ruleBook.nextConfiguration(configuration: configuration, character: ")")!
-print(configuration)
+var dpda = DPDA(currentConfiguration: configuration, acceptStates: [1], ruleBook: ruleBook)
+
+print(dpda.accepting)
+dpda.readString("(()")
+print(dpda.accepting)
+print(dpda.currentConfiguration)
