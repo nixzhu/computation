@@ -16,3 +16,5 @@ let dpdaDesign = DPDADesign(startState: 1, bottomCharacter: "$", acceptStates: [
 print(dpdaDesign.canAcceptsString("(((((((((())))))))))"))
 print(dpdaDesign.canAcceptsString("()(())((()))(()(()))"))
 print(dpdaDesign.canAcceptsString("(()(()(()()(()()))()"))
+
+print(dpdaDesign.canAcceptsString("())"))
