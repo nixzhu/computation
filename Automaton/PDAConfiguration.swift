@@ -11,6 +11,6 @@ struct PDAConfiguration<State: Hashable>: Hashable {
     let stack: Stack<Character>
 
     var hashValue: Int {
-        return state.hashValue ^ stack.hashValue
+        return "\(state)_\(stack)".hashValue
     }
 }
