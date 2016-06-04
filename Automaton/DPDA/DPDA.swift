@@ -12,10 +12,17 @@ struct DPDA<State: Hashable> {
     }
 
     mutating func readCharacter(character: Character) {
-        self.currentConfiguration = ruleBook.nextConfiguration(configuration: currentConfiguration, character: character)!
+        let _currentConfiguration = ruleBook.nextConfiguration(configuration: currentConfiguration, character: character)!
+        self.currentConfiguration = ruleBook.followFreeMoves(configuration: _currentConfiguration)
     }
 
     mutating func readString(string: String) {
         string.characters.forEach({ readCharacter($0) })
+    }
+
+    init(currentConfiguration: PDAConfiguration<State>, acceptStates: Set<State>, ruleBook: DPDARuleBook<State>) {
+        self.currentConfiguration = ruleBook.followFreeMoves(configuration: currentConfiguration)
+        self.acceptStates = acceptStates
+        self.ruleBook = ruleBook
     }
 }
