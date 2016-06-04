@@ -11,12 +11,8 @@ let rules = [
 ]
 let ruleBook = DPDARuleBook(rules: rules)
 
-var dpda = DPDA(currentConfiguration: configuration, acceptStates: [1], ruleBook: ruleBook)
+let dpdaDesign = DPDADesign(startState: 1, bottomCharacter: "$", acceptStates: [1], ruleBook: ruleBook)
 
-print(dpda.accepting)
-dpda.readString("(()(")
-print(dpda.accepting)
-print(dpda.currentConfiguration)
-dpda.readString("))()")
-print(dpda.accepting)
-print(dpda.currentConfiguration)
+print(dpdaDesign.canAcceptsString("(((((((((())))))))))"))
+print(dpdaDesign.canAcceptsString("()(())((()))(()(()))"))
+print(dpdaDesign.canAcceptsString("(()(()(()()(()()))()"))
