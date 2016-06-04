@@ -1,6 +1,8 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
+// xcrun swiftc *.swift ../PDARule.swift -o testDPDA && ./testDPDA
+
 let configuration = PDAConfiguration(state: 1, stack: Stack(contents: ["$"]))
 
 let rules = [
