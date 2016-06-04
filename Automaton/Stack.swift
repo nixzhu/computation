@@ -1,7 +1,11 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-struct Stack<Item> {
+func ==<Item: Hashable>(lhs: Stack<Item>, rhs: Stack<Item>) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+}
+
+struct Stack<Item: Hashable>: Hashable {
 
     let contents: [Item]
 
@@ -21,6 +25,10 @@ struct Stack<Item> {
 
     init(contents: [Item]) {
         self.contents = contents
+    }
+
+    var hashValue: Int {
+        return contents.reduce(0, combine: { $0.hashValue ^ $1.hashValue })
     }
 }
 

@@ -1,7 +1,7 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-// xcrun swiftc *.swift ../PDARule.swift -o testDPDA && ./testDPDA
+// xcrun swiftc *.swift ../Stack.swift ../PDARule.swift ../PDAConfiguration.swift -o testDPDA && ./testDPDA
 
 let configuration = PDAConfiguration(state: 1, stack: Stack(contents: ["$"]))
 
