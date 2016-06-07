@@ -3,7 +3,7 @@
 
 struct NFARuleBook<State: Hashable> {
 
-    let rules: [Rule<State>]
+    let rules: [FARule<State>]
 
     var alphabet: [Character] {
         return Array(Set(rules.map({ $0.character }).flatMap({ $0 })))
@@ -17,7 +17,7 @@ struct NFARuleBook<State: Hashable> {
         return rulesFor(state: state, character: character).map({ $0.followState })
     }
 
-    private func rulesFor(state state: State, character: Character?) -> [Rule<State>] {
+    private func rulesFor(state state: State, character: Character?) -> [FARule<State>] {
         return rules.filter({ $0.canAppliesTo(state: state, character: character) })
     }
 

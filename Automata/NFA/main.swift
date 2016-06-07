@@ -1,7 +1,7 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-// xcrun swiftc *.swift ../Rule.swift ../DFA/DFA.swift ../DFA/DFADesign.swift ../DFA/DFARuleBook.swift -o testNFA && ./testNFA
+// xcrun swiftc *.swift ../FARule.swift ../DFA/DFA.swift ../DFA/DFADesign.swift ../DFA/DFARuleBook.swift -o testNFA && ./testNFA
 
 do {
     //         a,b
@@ -14,13 +14,13 @@ do {
     print("accept string which the third-last character is 'b':")
 
     let rules = [
-        Rule(state: 1, character: "a", nextState: 1),
-        Rule(state: 1, character: "b", nextState: 1),
-        Rule(state: 1, character: "b", nextState: 2),
-        Rule(state: 2, character: "a", nextState: 3),
-        Rule(state: 2, character: "b", nextState: 3),
-        Rule(state: 3, character: "a", nextState: 4),
-        Rule(state: 3, character: "b", nextState: 4),
+        FARule(state: 1, character: "a", nextState: 1),
+        FARule(state: 1, character: "b", nextState: 1),
+        FARule(state: 1, character: "b", nextState: 2),
+        FARule(state: 2, character: "a", nextState: 3),
+        FARule(state: 2, character: "b", nextState: 3),
+        FARule(state: 3, character: "a", nextState: 4),
+        FARule(state: 3, character: "b", nextState: 4),
     ]
 
     let ruleBook = NFARuleBook(rules: rules)
@@ -54,13 +54,13 @@ do {
     print("accept string which length is a multiple of two or three:")
 
     let rules = [
-        Rule(state: 1, character: nil, nextState: 2),
-        Rule(state: 1, character: nil, nextState: 4),
-        Rule(state: 2, character: "a", nextState: 3),
-        Rule(state: 3, character: "a", nextState: 2),
-        Rule(state: 4, character: "a", nextState: 5),
-        Rule(state: 5, character: "a", nextState: 6),
-        Rule(state: 6, character: "a", nextState: 4),
+        FARule(state: 1, character: nil, nextState: 2),
+        FARule(state: 1, character: nil, nextState: 4),
+        FARule(state: 2, character: "a", nextState: 3),
+        FARule(state: 3, character: "a", nextState: 2),
+        FARule(state: 4, character: "a", nextState: 5),
+        FARule(state: 5, character: "a", nextState: 6),
+        FARule(state: 6, character: "a", nextState: 4),
     ]
 
     let ruleBook = NFARuleBook(rules: rules)
@@ -86,12 +86,12 @@ do {
     print("convert NFA to DFA:")
 
     let rules = [
-        Rule(state: 1, character: "a", nextState: 1),
-        Rule(state: 1, character: "a", nextState: 2),
-        Rule(state: 1, character: nil, nextState: 2),
-        Rule(state: 2, character: "b", nextState: 3),
-        Rule(state: 3, character: "b", nextState: 1),
-        Rule(state: 3, character: nil, nextState: 2),
+        FARule(state: 1, character: "a", nextState: 1),
+        FARule(state: 1, character: "a", nextState: 2),
+        FARule(state: 1, character: nil, nextState: 2),
+        FARule(state: 2, character: "b", nextState: 3),
+        FARule(state: 3, character: "b", nextState: 1),
+        FARule(state: 3, character: nil, nextState: 2),
     ]
 
     let ruleBook = NFARuleBook(rules: rules)

@@ -11,13 +11,13 @@ struct NFASimulation {
         return nfa.currentStates
     }
 
-    private func rulesFor(state state: Set<Int>) -> [Rule<Set<Int>>] {
+    private func rulesFor(state state: Set<Int>) -> [FARule<Set<Int>>] {
         return nfaDesign.ruleBook.alphabet.map({
-            Rule(state: state, character: $0, nextState: nextState(state: state, character: $0))
+            FARule(state: state, character: $0, nextState: nextState(state: state, character: $0))
         })
     }
 
-    private func discoverStatesAndRules(states states: Set<Set<Int>>) -> (Set<Set<Int>>, [Rule<Set<Int>>]) {
+    private func discoverStatesAndRules(states states: Set<Set<Int>>) -> (Set<Set<Int>>, [FARule<Set<Int>>]) {
         let rules = states.map({ rulesFor(state: $0) }).flatMap({ $0 })
         let moreStates = Set(rules.map({ $0.followState }))
         if moreStates.isSubsetOf(states) {

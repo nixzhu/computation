@@ -1,7 +1,7 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-// xcrun swiftc *.swift ../Rule.swift -o testDFA && ./testDFA
+// xcrun swiftc *.swift ../FARule.swift -o testDFA && ./testDFA
 
 //          b            a           a,b
 //        ┌───┐        ┌───┐        ┌───┐
@@ -13,12 +13,12 @@
 print("accepts string which contains \"ab\":")
 
 let rules = [
-    Rule(state: 1, character: "a", nextState: 2),
-    Rule(state: 1, character: "b", nextState: 1),
-    Rule(state: 2, character: "a", nextState: 2),
-    Rule(state: 2, character: "b", nextState: 3),
-    Rule(state: 3, character: "a", nextState: 3),
-    Rule(state: 3, character: "b", nextState: 3),
+    FARule(state: 1, character: "a", nextState: 2),
+    FARule(state: 1, character: "b", nextState: 1),
+    FARule(state: 2, character: "a", nextState: 2),
+    FARule(state: 2, character: "b", nextState: 3),
+    FARule(state: 3, character: "a", nextState: 3),
+    FARule(state: 3, character: "b", nextState: 3),
 ]
 
 let ruleBook = DFARuleBook(rules: rules)

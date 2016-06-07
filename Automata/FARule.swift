@@ -1,7 +1,7 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-public struct Rule<State: Hashable> {
+public struct FARule<State: Hashable> {
 
     let state: State
     let character: Character?
