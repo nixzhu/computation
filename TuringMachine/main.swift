@@ -13,3 +13,5 @@ print(rule)
 print(rule.canAppliesTo(configuration: TMConfiguration(state: 1, tape: Tape(leftCharacters: [], middleCharacter: "0", rightCharacters: [], blankCharacter: "_"))))
 print(rule.canAppliesTo(configuration: TMConfiguration(state: 1, tape: Tape(leftCharacters: [], middleCharacter: "1", rightCharacters: [], blankCharacter: "_"))))
 print(rule.canAppliesTo(configuration: TMConfiguration(state: 2, tape: Tape(leftCharacters: [], middleCharacter: "0", rightCharacters: [], blankCharacter: "_"))))
+
+print(rule.followConfiguration(configuration: TMConfiguration(state: 1, tape: Tape(leftCharacters: [], middleCharacter: "0", rightCharacters: [], blankCharacter: "_"))))
