@@ -1,10 +1,17 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-import Foundation
+private class UniqueState {
 
-private func uniqueState() -> Int {
-    return NSUUID().UUIDString.hashValue
+    private var count = 0
+    static let sharedInstance = UniqueState()
+    private init() {
+    }
+
+    class func nextState() -> Int {
+        sharedInstance.count += 1
+        return sharedInstance.count
+    }
 }
 
 enum Pattern {
@@ -50,13 +57,13 @@ enum Pattern {
     var nfaDesign: NFADesign<Int> {
         switch self {
         case .Empty:
-            let startState = uniqueState()
+            let startState = UniqueState.nextState()
             let acceptStates: Set<Int> = [startState]
             let ruleBook = NFARuleBook<Int>(rules: [])
             return NFADesign(startState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
         case .Literal(let character):
-            let startState = uniqueState()
-            let acceptState = uniqueState()
+            let startState = UniqueState.nextState()
+            let acceptState = UniqueState.nextState()
             let rule = FARule(state: startState, character: character, nextState: acceptState)
             let ruleBook = NFARuleBook(rules: [rule])
             return NFADesign(startState: startState, acceptStates: [acceptState], ruleBook: ruleBook)
@@ -74,7 +81,7 @@ enum Pattern {
         case .Choose(let firstPart, let secondPart):
             let firstPartNFADesign = firstPart.nfaDesign
             let secondPartNFADesign = secondPart.nfaDesign
-            let startState = uniqueState()
+            let startState = UniqueState.nextState()
             let acceptStates = firstPartNFADesign.acceptStates.union(secondPartNFADesign.acceptStates)
             let rules = firstPartNFADesign.ruleBook.rules + secondPartNFADesign.ruleBook.rules
             let extraRules = [firstPartNFADesign, secondPartNFADesign].map({
@@ -84,7 +91,7 @@ enum Pattern {
             return NFADesign(startState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
         case .Repeat(let pattern):
             let patternNFADesign = pattern.nfaDesign
-            let startState = uniqueState()
+            let startState = UniqueState.nextState()
             let acceptStates = patternNFADesign.acceptStates.union([startState])
             let rules = patternNFADesign.ruleBook.rules
             let extraRules = patternNFADesign.acceptStates.map({
