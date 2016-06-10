@@ -1,6 +1,8 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
+// xcrun swiftc *.swift -o testTM && ./testTM
+
 // Recognize string "aaabbbccc"
 
 let tape = Tape(leftCharacters: [], middleCharacter: "a", rightCharacters: ["a", "a", "b", "b", "b", "c", "c", "c"], blankCharacter: "_")

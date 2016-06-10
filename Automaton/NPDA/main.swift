@@ -1,6 +1,10 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
+// xcrun swiftc *.swift ../Stack.swift ../PDARule.swift ../PDAConfiguration.swift -o testNPDA && ./testNPDA
+
+// 识别回文
+
 let rules = [
     PDARule(state: 1, character: "a", nextState: 1, popCharacter: "$", pushCharacters: ["a", "$"]),
     PDARule(state: 1, character: "a", nextState: 1, popCharacter: "a", pushCharacters: ["a", "a"]),
