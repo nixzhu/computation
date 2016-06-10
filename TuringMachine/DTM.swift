@@ -14,6 +14,13 @@ struct DTM<State: Hashable> {
         return acceptStates.contains(currentConfiguration.state)
     }
 
+    var stuck: Bool {
+        guard let currentConfiguration = currentConfiguration else {
+            return true
+        }
+        return !accepting && !ruleBook.canAppliesTo(configuration: currentConfiguration)
+    }
+
     mutating func step() {
         guard let currentConfiguration = currentConfiguration else {
             return
@@ -22,7 +29,7 @@ struct DTM<State: Hashable> {
     }
 
     mutating func run() {
-        while !accepting {
+        while !accepting && !stuck {
             step()
         }
     }

@@ -5,6 +5,10 @@ struct DTMRuleBook<State: Hashable> {
 
     let rules: [TMRule<State>]
 
+    func canAppliesTo(configuration configuration: TMConfiguration<State>) -> Bool {
+        return ruleFor(configuration: configuration) != nil
+    }
+
     func nextConfiguration(configuration configuration: TMConfiguration<State>) -> TMConfiguration<State>? {
         return ruleFor(configuration: configuration)?.followConfiguration(configuration: configuration)
     }

@@ -1,7 +1,7 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-let tape = Tape(leftCharacters: ["1", "0", "1"], middleCharacter: "1", rightCharacters: [], blankCharacter: "_")
+let tape = Tape(leftCharacters: ["1", "2", "1"], middleCharacter: "1", rightCharacters: [], blankCharacter: "_")
 let configuration = TMConfiguration(state: 1, tape: tape)
 
 let rules = [
@@ -15,11 +15,7 @@ let rules = [
 let ruleBook = DTMRuleBook(rules: rules)
 
 var dtm = DTM(currentConfiguration: configuration, acceptStates: [3], ruleBook: ruleBook)
-print(dtm.currentConfiguration)
-print(dtm.accepting)
-dtm.step()
-print(dtm.currentConfiguration)
-print(dtm.accepting)
 dtm.run()
 print(dtm.currentConfiguration)
 print(dtm.accepting)
+print(dtm.stuck)
