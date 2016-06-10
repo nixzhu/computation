@@ -3,6 +3,9 @@
 
 // Recognize string "aaabbbccc"
 
+let tape = Tape(leftCharacters: [], middleCharacter: "a", rightCharacters: ["a", "a", "b", "b", "b", "c", "c", "c"], blankCharacter: "_")
+let configuration = TMConfiguration(state: 1, tape: tape)
+
 let rules = [
     // 状态 1: 向右扫描，查找 a
     TMRule(state: 1, character: "X", nextState: 1, writeCharacter: "X", direction: .Right),
@@ -32,10 +35,8 @@ let rules = [
 ]
 let ruleBook = DTMRuleBook(rules: rules)
 
-let tape = Tape(leftCharacters: [], middleCharacter: "a", rightCharacters: ["a", "a", "b", "b", "b", "c", "c", "c"], blankCharacter: "_")
-print(tape)
-let configuration = TMConfiguration(state: 1, tape: tape)
 var dtm = DTM(currentConfiguration: configuration, acceptStates: [6], ruleBook: ruleBook)
+
 (0..<10).forEach({ _ in
     dtm.step()
 })
