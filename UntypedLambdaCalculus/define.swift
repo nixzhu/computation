@@ -31,3 +31,11 @@ let IF: BOOLEAN -> V -> V -> Bool = { b in
 func toBoolean(boolean: BOOLEAN) -> Bool {
     return IF(boolean)({ true })({ false })
 }
+
+let IS_ZERO: INTEGER -> BOOLEAN = { integer in
+    if toInteger(integer) == 0 {
+        return TRUE
+    } else {
+        return FALSE
+    }
+}
