@@ -2,18 +2,30 @@
 // @nixzhu (zhuhongxu@gmail.com)
 
 typealias P = Int -> Int
-typealias Number = P -> Int -> Int
 
-let zero    : Number = { p in { x in x } }
-let one     : Number = { p in { x in p(x) } }
-let two     : Number = { p in { x in p(p(x)) } }
-let three   : Number = { p in { x in p(p(p(x))) } }
+typealias INTEGER = P -> Int -> Int
 
-func toInteger(number: Number) -> Int {
-    return number({ $0 + 1 })(0)
+let ZERO    : INTEGER = { p in { x in x } }
+let ONE     : INTEGER = { p in { x in p(x) } }
+let TWO     : INTEGER = { p in { x in p(p(x)) } }
+
+func toInteger(integer: INTEGER) -> Int {
+    return integer({ $0 + 1 })(0)
 }
 
-print(toInteger(zero))
-print(toInteger(one))
-print(toInteger(two))
-print(toInteger(three))
+print(toInteger(ZERO))
+print(toInteger(ONE))
+print(toInteger(TWO))
+
+typealias B = () -> Bool
+typealias BOOLEAN = (B, B) -> B
+
+let TRUE    : BOOLEAN = { t, f in t }
+let FALSE   : BOOLEAN = { t, f in f }
+
+func toBoolean(boolean: BOOLEAN) -> Bool {
+    return boolean({ true }, { false })()
+}
+
+print(toBoolean(TRUE))
+print(toBoolean(FALSE))
