@@ -2,36 +2,38 @@
 // @nixzhu (zhuhongxu@gmail.com)
 
 typealias P = Int -> Int
+typealias Number = P -> Int -> Int
 
-let zero = { (p: P) in
-    return { (x: Int) in
+let zero: Number = { p in
+    return { x in
         return x
     }
 }
 
-let one = { (p: P) in
-    return { (x: Int) in
+let one: Number = { p in
+    return { x in
         return p(x)
     }
 }
 
-let two = { (p: P) in
-    return { (x: Int) in
+let two: Number = { p in
+    return { x in
         return p(p(x))
     }
 }
 
-let three = { (p: P) in
-    return { (x: Int) in
+let three: Number = { p in
+    return { x in
         return p(p(p(x)))
     }
 }
 
-func toInteger(proc: P -> (Int -> Int)) -> Int {
-    return proc({ $0 + 1 })(0)
+func toInteger(number: Number) -> Int {
+    return number({ $0 + 1 })(0)
 }
 
 print(toInteger(zero))
 print(toInteger(one))
 print(toInteger(two))
+print(toInteger(three))
 print(toInteger(three))
