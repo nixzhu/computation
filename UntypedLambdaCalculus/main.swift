@@ -16,14 +16,26 @@ print(toInteger(ZERO))
 print(toInteger(ONE))
 print(toInteger(TWO))
 
-typealias BOOLEAN = Bool -> Bool -> Bool
+typealias B = Void -> Bool
+typealias BOOLEAN = B -> B -> B
 
 let TRUE    : BOOLEAN = { t in { f in t } }
 let FALSE   : BOOLEAN = { t in { f in f } }
 
 func toBoolean(boolean: BOOLEAN) -> Bool {
-    return boolean(true)(false)
+    return boolean({ true })({ false })()
 }
 
 print(toBoolean(TRUE))
 print(toBoolean(FALSE))
+
+let IF: BOOLEAN -> B -> B -> Bool = { b in
+    return { x in
+        return { y in
+            b(x)(y)()
+        }
+    }
+}
+
+IF(TRUE)({ print("hello"); return true })({ print("world"); return false })
+IF(FALSE)({ print("hello"); return true })({ print("world"); return false })
