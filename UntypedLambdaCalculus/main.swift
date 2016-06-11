@@ -29,13 +29,16 @@ func toBoolean(boolean: BOOLEAN) -> Bool {
 print(toBoolean(TRUE))
 print(toBoolean(FALSE))
 
-let IF: BOOLEAN -> B -> B -> Bool = { b in
+typealias V = Void -> Void
+
+let IF: BOOLEAN -> V -> V -> Void = { b in
     return { x in
         return { y in
-            b(x)(y)()
+            b({ x(); return true })({ y(); return false })()
+            return
         }
     }
 }
 
-IF(TRUE)({ print("hello"); return true })({ print("world"); return false })
-IF(FALSE)({ print("hello"); return true })({ print("world"); return false })
+IF(TRUE)({ print("hello") })({ print("world") })
+IF(FALSE)({ print("hello") })({ print("world") })
