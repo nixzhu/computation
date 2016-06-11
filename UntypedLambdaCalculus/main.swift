@@ -2,7 +2,6 @@
 // @nixzhu (zhuhongxu@gmail.com)
 
 typealias P = Int -> Int
-
 typealias INTEGER = P -> Int -> Int
 
 let ZERO    : INTEGER = { p in { x in x } }
@@ -17,14 +16,13 @@ print(toInteger(ZERO))
 print(toInteger(ONE))
 print(toInteger(TWO))
 
-typealias B = () -> Bool
-typealias BOOLEAN = (B, B) -> B
+typealias BOOLEAN = Bool -> Bool -> Bool
 
-let TRUE    : BOOLEAN = { t, f in t }
-let FALSE   : BOOLEAN = { t, f in f }
+let TRUE    : BOOLEAN = { t in { f in t } }
+let FALSE   : BOOLEAN = { t in { f in f } }
 
 func toBoolean(boolean: BOOLEAN) -> Bool {
-    return boolean({ true }, { false })()
+    return boolean(true)(false)
 }
 
 print(toBoolean(TRUE))
