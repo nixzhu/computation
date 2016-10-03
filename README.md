@@ -11,14 +11,12 @@ swift build
 
 # Machines
 
-- Automata
-  - DFA
-  - NFA
-  - RE
-- Automaton
-  - DPDA
-  - NPDA
-- TuringMachine
+- DFA   Deterministic Finite Automation (确定性有限自动机)
+- NFA   Nondeterministic Finite Automaton (非确定性有限自动机)
+- RE    Regular Expression (正则表达式)
+- DPDA  Deterministic PushDown Automaton (确定性下推自动机)
+- NPDA  Nondeterministic PushDown Automaton (非确定性下推自动机)
+- TM    Turing Machine (图灵机)
 
 # Contact
 
