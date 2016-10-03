@@ -11,7 +11,7 @@ struct DFADesign<State: Hashable> {
          return DFA(currentState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
     }
 
-    func canAcceptsString(string: String) -> Bool {
+    func canAcceptsString(_ string: String) -> Bool {
         var dfa = generatDFA()
         dfa.readString(string)
         return dfa.accepting

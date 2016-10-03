@@ -5,7 +5,7 @@ struct Stack<Item> {
 
     let contents: [Item]
 
-    func push(item: Item) -> Stack<Item> {
+    func push(_ item: Item) -> Stack<Item> {
         return Stack(contents: [item] + contents)
     }
 
@@ -27,6 +27,6 @@ struct Stack<Item> {
 extension Stack: CustomStringConvertible {
 
     var description: String {
-        return contents.enumerate().map({ $0 == 0 ? "(\($1))" : "\($1)" }).joinWithSeparator("")
+        return contents.enumerated().map({ $0 == 0 ? "(\($1))" : "\($1)" }).joined(separator: "")
     }
 }

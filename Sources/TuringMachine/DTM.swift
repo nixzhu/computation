@@ -25,7 +25,7 @@ struct DTM<State: Hashable> {
         guard let currentConfiguration = currentConfiguration else {
             return
         }
-        self.currentConfiguration = ruleBook.nextConfiguration(configuration: currentConfiguration)
+        self.currentConfiguration = ruleBook.nextConfiguration(from: currentConfiguration)
     }
 
     mutating func run() {

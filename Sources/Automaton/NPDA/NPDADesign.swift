@@ -8,7 +8,7 @@ struct NPDADesign<State: Hashable> {
     let acceptStates: Set<State>
     let ruleBook: NPDARuleBook<State>
 
-    func canAcceptsString(string: String) -> Bool {
+    func canAcceptsString(_ string: String) -> Bool {
         var npda = generateNPDA()
         npda.readString(string)
         return npda.accepting

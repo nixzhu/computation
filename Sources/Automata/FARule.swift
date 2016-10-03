@@ -7,7 +7,7 @@ public struct FARule<State: Hashable> {
     let character: Character?
     let nextState: State
 
-    public func canAppliesTo(state state: State, character: Character?) -> Bool {
+    public func canAppliesTo(state: State, character: Character?) -> Bool {
         return self.state == state && self.character == character
     }
 

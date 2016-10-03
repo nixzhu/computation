@@ -7,13 +7,13 @@ struct NFADesign<State: Hashable> {
     let acceptStates: Set<State>
     let ruleBook: NFARuleBook<State>
 
-    func generatNFA(currentStates currentStates: Set<State>? = nil) -> NFA<State> {
+    func generateNFA(from currentStates: Set<State>? = nil) -> NFA<State> {
         let currentStates = currentStates ?? [startState]
         return NFA(currentStates: currentStates, acceptStates: acceptStates, ruleBook: ruleBook)
     }
 
-    func canAcceptsString(string: String) -> Bool {
-        var nfa = generatNFA()
+    func canAcceptsString(_ string: String) -> Bool {
+        var nfa = generateNFA()
         nfa.readString(string)
         return nfa.accepting
     }

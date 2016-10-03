@@ -8,7 +8,7 @@ struct DPDADesign<State: Hashable> {
     let acceptStates: Set<State>
     let ruleBook: DPDARuleBook<State>
 
-    func canAcceptsString(string: String) -> Bool {
+    func canAcceptsString(_ string: String) -> Bool {
         var dpda = generatDPDA()
         dpda.readString(string)
         return dpda.accepting

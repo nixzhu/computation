@@ -14,15 +14,15 @@ struct TMRule<State: Hashable> {
     let writeCharacter: Character
     let direction: Direction
 
-    func canAppliesTo(configuration configuration: TMConfiguration<State>) -> Bool {
+    func canAppliesTo(configuration: TMConfiguration<State>) -> Bool {
         return (state == configuration.state) && (character == configuration.tape.middleCharacter)
     }
 
-    func followConfiguration(configuration configuration: TMConfiguration<State>) -> TMConfiguration<State> {
-        return TMConfiguration(state: nextState, tape: nextTape(configuration: configuration))
+    func followConfiguration(from configuration: TMConfiguration<State>) -> TMConfiguration<State> {
+        return TMConfiguration(state: nextState, tape: nextTape(for: configuration))
     }
 
-    func nextTape(configuration configuration: TMConfiguration<State>) -> Tape {
+    func nextTape(for configuration: TMConfiguration<State>) -> Tape {
         let writtenTape = configuration.tape.writeCharacter(writeCharacter)
         switch direction {
         case .Left:

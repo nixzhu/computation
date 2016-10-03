@@ -8,7 +8,7 @@ struct Tape {
     let rightCharacters: [Character]
     let blankCharacter: Character
 
-    func writeCharacter(character: Character) -> Tape {
+    func writeCharacter(_ character: Character) -> Tape {
         return Tape(leftCharacters: leftCharacters, middleCharacter: character, rightCharacters: rightCharacters, blankCharacter: blankCharacter)
     }
 
@@ -28,6 +28,6 @@ struct Tape {
 extension Tape: CustomStringConvertible {
 
     var description: String {
-        return "Tape: " + leftCharacters.map({ "\($0)" }).joinWithSeparator("") + "(\(middleCharacter))" + rightCharacters.map({ "\($0)" }).joinWithSeparator("")
+        return "Tape: " + leftCharacters.map({ "\($0)" }).joined(separator: "") + "(\(middleCharacter))" + rightCharacters.map({ "\($0)" }).joined(separator: "")
     }
 }

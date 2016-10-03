@@ -16,17 +16,17 @@ struct NPDA<State: Hashable> {
         return false
     }
 
-    mutating func readCharacter(character: Character) {
-        let _currentConfigurations = ruleBook.nextConfigurations(configurations: currentConfigurations, character: character)
-        self.currentConfigurations = ruleBook.followFreeMoves(configurations: _currentConfigurations)
+    mutating func readCharacter(_ character: Character) {
+        let _currentConfigurations = ruleBook.nextConfigurations(from: currentConfigurations, for: character)
+        self.currentConfigurations = ruleBook.followFreeMoves(for: _currentConfigurations)
     }
 
-    mutating func readString(string: String) {
+    mutating func readString(_ string: String) {
         string.characters.forEach({ readCharacter($0) })
     }
 
     init(currentConfigurations: Set<PDAConfiguration<State>>, acceptStates: Set<State>, ruleBook: NPDARuleBook<State>) {
-        self.currentConfigurations = ruleBook.followFreeMoves(configurations: currentConfigurations)
+        self.currentConfigurations = ruleBook.followFreeMoves(for: currentConfigurations)
         self.acceptStates = acceptStates
         self.ruleBook = ruleBook
     }

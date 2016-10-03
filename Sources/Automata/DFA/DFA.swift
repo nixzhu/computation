@@ -11,15 +11,15 @@ struct DFA<State: Hashable> {
         return acceptStates.contains(currentState)
     }
 
-    mutating func readCharacter(character: Character) {
-        if let state = ruleBook.nextState(state: currentState, character: character) {
+    mutating func readCharacter(_ character: Character) {
+        if let state = ruleBook.nextState(from: currentState, for: character) {
             self.currentState = state
         } else {
             print("Invalid character: \(character)")
         }
     }
 
-    mutating func readString(string: String) {
+    mutating func readString(_ string: String) {
         string.characters.forEach({ readCharacter($0) })
     }
 }

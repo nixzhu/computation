@@ -15,38 +15,38 @@ private class UniqueState {
 }
 
 enum Pattern {
-    case Empty
-    case Literal(character: Character)
-    indirect case Concatenate(firstPart: Pattern, secondPart: Pattern)
-    indirect case Choose(firstPart: Pattern, secondPart: Pattern)
-    indirect case Repeat(pattern: Pattern)
+    case empty
+    case literal(character: Character)
+    indirect case concatenate(firstPart: Pattern, secondPart: Pattern)
+    indirect case choose(firstPart: Pattern, secondPart: Pattern)
+    indirect case `repeat`(pattern: Pattern)
 
     var `precedence`: Int {
         switch self {
-        case .Empty: return 3
-        case .Literal: return 3
-        case .Concatenate: return 1
-        case .Choose: return 0
-        case .Repeat: return 2
+        case .empty: return 3
+        case .literal: return 3
+        case .concatenate: return 1
+        case .choose: return 0
+        case .repeat: return 2
         }
     }
 
     var string: String {
         switch self {
-        case .Empty:
+        case .empty:
             return ""
-        case .Literal(let character):
+        case .literal(let character):
             return String(character)
-        case .Concatenate(let firstPart, let secondPart):
-            return [firstPart, secondPart].map({ $0.bracket(`precedence`) }).joinWithSeparator("")
-        case .Choose(let firstPart, let secondPart):
-            return [firstPart, secondPart].map({ $0.bracket(`precedence`) }).joinWithSeparator("|")
-        case .Repeat(let pattern):
+        case .concatenate(let firstPart, let secondPart):
+            return [firstPart, secondPart].map({ $0.bracket(`precedence`) }).joined(separator: "")
+        case .choose(let firstPart, let secondPart):
+            return [firstPart, secondPart].map({ $0.bracket(`precedence`) }).joined(separator: "|")
+        case .repeat(let pattern):
             return pattern.bracket(`precedence`) + "*"
         }
     }
 
-    private func bracket(outerPrecedence: Int) -> String {
+    private func bracket(_ outerPrecedence: Int) -> String {
         if `precedence` < outerPrecedence {
             return "(\(string))"
         } else {
@@ -56,18 +56,18 @@ enum Pattern {
 
     var nfaDesign: NFADesign<Int> {
         switch self {
-        case .Empty:
+        case .empty:
             let startState = UniqueState.nextState()
             let acceptStates: Set<Int> = [startState]
             let ruleBook = NFARuleBook<Int>(rules: [])
             return NFADesign(startState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
-        case .Literal(let character):
+        case .literal(let character):
             let startState = UniqueState.nextState()
             let acceptState = UniqueState.nextState()
             let rule = FARule(state: startState, character: character, nextState: acceptState)
             let ruleBook = NFARuleBook(rules: [rule])
             return NFADesign(startState: startState, acceptStates: [acceptState], ruleBook: ruleBook)
-        case .Concatenate(let firstPart, let secondPart):
+        case .concatenate(let firstPart, let secondPart):
             let firstPartNFADesign = firstPart.nfaDesign
             let secondPartNFADesign = secondPart.nfaDesign
             let startState = firstPartNFADesign.startState
@@ -78,7 +78,7 @@ enum Pattern {
             })
             let ruleBook = NFARuleBook(rules: rules + extraRules)
             return NFADesign(startState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
-        case .Choose(let firstPart, let secondPart):
+        case .choose(let firstPart, let secondPart):
             let firstPartNFADesign = firstPart.nfaDesign
             let secondPartNFADesign = secondPart.nfaDesign
             let startState = UniqueState.nextState()
@@ -89,7 +89,7 @@ enum Pattern {
             })
             let ruleBook = NFARuleBook(rules: rules + extraRules)
             return NFADesign(startState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
-        case .Repeat(let pattern):
+        case .repeat(let pattern):
             let patternNFADesign = pattern.nfaDesign
             let startState = UniqueState.nextState()
             let acceptStates = patternNFADesign.acceptStates.union([startState])
@@ -102,7 +102,7 @@ enum Pattern {
         }
     }
 
-    func canMatchesString(string: String) -> Bool {
+    func canMatchesString(_ string: String) -> Bool {
         return nfaDesign.canAcceptsString(string)
     }
 }
