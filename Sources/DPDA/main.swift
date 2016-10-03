@@ -1,8 +1,6 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-// xcrun swiftc *.swift ../Stack.swift ../PDARule.swift ../PDAConfiguration.swift -o testDPDA && ./testDPDA
-
 // 识括号匹配
 
 let configuration = PDAConfiguration(state: 1, stack: Stack(contents: ["$"]))

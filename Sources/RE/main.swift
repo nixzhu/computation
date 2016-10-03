@@ -1,8 +1,6 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-// xcrun swiftc *.swift ../NFA/NFA.swift ../NFA/NFADesign.swift ../NFA/NFARuleBook.swift ../FARule.swift -o testRE && ./testRE
-
 let pattern = Pattern.repeat(pattern:
     Pattern.concatenate(
         firstPart: Pattern.literal(character: "a"),

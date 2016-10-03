@@ -1,8 +1,6 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-// xcrun swiftc *.swift ../Stack.swift ../PDARule.swift ../PDAConfiguration.swift -o testNPDA && ./testNPDA
-
 // 识别回文
 
 let rules = [

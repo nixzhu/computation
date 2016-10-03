@@ -1,8 +1,6 @@
 
 // @nixzhu (zhuhongxu@gmail.com)
 
-// xcrun swiftc *.swift ../FARule.swift -o testDFA && ./testDFA
-
 //          b            a           a,b
 //        ┌───┐        ┌───┐        ┌───┐
 //        │   ▼        │   ▼        │   ▼
