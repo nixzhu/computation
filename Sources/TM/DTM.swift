@@ -12,7 +12,7 @@ struct DTM<State: Hashable> {
     return acceptStates.contains(currentConfiguration.state)
   }
 
-  var stuck: Bool {
+  private var stuck: Bool {
     guard let currentConfiguration = currentConfiguration else {
       return true
     }
@@ -20,10 +20,10 @@ struct DTM<State: Hashable> {
   }
 
   mutating func step() {
-    guard let currentConfiguration = currentConfiguration else {
+    guard let configuration = currentConfiguration else {
       return
     }
-    self.currentConfiguration = ruleBook.nextConfiguration(from: currentConfiguration)
+    currentConfiguration = ruleBook.nextConfiguration(from: configuration)
   }
 
   mutating func run() {

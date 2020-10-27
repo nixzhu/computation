@@ -11,13 +11,6 @@ struct DPDARuleBook<State: Hashable> {
       .followConfiguration(from: configuration)
   }
 
-  private func ruleFor(
-    configuration: PDAConfiguration<State>,
-    character: Character?
-  ) -> PDARule<State>? {
-    rules.filter({ $0.canAppliesTo(configuration: configuration, character: character) }).first
-  }
-
   func canAppliesTo(configuration: PDAConfiguration<State>, character: Character?) -> Bool {
     ruleFor(configuration: configuration, character: character) != nil
   }
@@ -28,5 +21,12 @@ struct DPDARuleBook<State: Hashable> {
     } else {
       return configuration
     }
+  }
+
+  private func ruleFor(
+    configuration: PDAConfiguration<State>,
+    character: Character?
+  ) -> PDARule<State>? {
+    rules.first(where: { $0.canAppliesTo(configuration: configuration, character: character) })
   }
 }

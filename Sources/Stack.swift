@@ -1,29 +1,30 @@
 // @nixzhu (zhuhongxu@gmail.com)
 
 struct Stack<Item: Hashable>: Hashable {
-  let contents: [Item]
+  private let items: [Item]
+
+  var top: Item? {
+    items.last
+  }
 
   func push(_ item: Item) -> Stack<Item> {
-    Stack(contents: [item] + contents)
+    Stack(items + [item])
   }
 
   func pop() -> Stack<Item> {
-    var _contents = contents
-    _contents.removeFirst()
-    return Stack(contents: _contents)
+    var _items = items
+    _items.removeLast()
+
+    return Stack(_items)
   }
 
-  var top: Item? {
-    contents.first
-  }
-
-  init(contents: [Item]) {
-    self.contents = contents
+  init(_ items: [Item]) {
+    self.items = items
   }
 }
 
 extension Stack: CustomStringConvertible {
   var description: String {
-    contents.enumerated().map({ $0 == 0 ? "(\($1))" : "\($1)" }).joined(separator: "")
+    "|" + items.map({ "\($0)" }).joined(separator: "|")
   }
 }

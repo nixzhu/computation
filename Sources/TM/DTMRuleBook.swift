@@ -12,6 +12,6 @@ struct DTMRuleBook<State: Hashable> {
   }
 
   private func ruleFor(configuration: TMConfiguration<State>) -> TMRule<State>? {
-    rules.filter({ $0.canAppliesTo(configuration: configuration) }).first
+    rules.first(where: { $0.canAppliesTo(configuration: configuration) })
   }
 }

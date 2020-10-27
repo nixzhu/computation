@@ -8,7 +8,7 @@ struct PDARule<State: Hashable> {
   let pushCharacters: [Character]
 
   func canAppliesTo(configuration: PDAConfiguration<State>, character: Character?) -> Bool {
-    return self.state == configuration.state
+    self.state == configuration.state
       && self.popCharacter == configuration.stack.top
       && self.character == character
   }

@@ -3,12 +3,12 @@
 struct NFARuleBook<State: Hashable> {
   let rules: [FARule<State>]
 
-  var alphabet: [Character] {
-    Array(Set(rules.compactMap { $0.character }))
+  var alphabet: Set<Character> {
+    Set(rules.compactMap { $0.character })
   }
 
   func nextStates(from states: Set<State>, for character: Character?) -> Set<State> {
-    Set(states.map({ followStatesFor(state: $0, character: character) }).flatMap({ $0 }))
+    Set(states.flatMap({ followStatesFor(state: $0, character: character) }))
   }
 
   private func followStatesFor(state: State, character: Character?) -> [State] {

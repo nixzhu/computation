@@ -16,6 +16,7 @@ struct NFADesign<State: Hashable> {
   func canAcceptsString(_ string: String) -> Bool {
     var nfa = generateNFA()
     nfa.readString(string)
+
     return nfa.accepting
   }
 }

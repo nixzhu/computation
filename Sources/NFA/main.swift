@@ -8,7 +8,7 @@ do {
   // ─────▶│  1  │─────▶│  2  │─────▶│  3  │─────▶║  4  ║
   //       └─────┘      └─────┘      └─────┘      ╚═════╝
 
-  print("accept string which the third-last character is 'b':")
+  print("Accepts string which the third-last character is `b`:")
 
   let rules = [
     FARule(state: 1, character: "a", nextState: 1),
@@ -24,8 +24,8 @@ do {
 
   ["bab", "bbbbb", "bbabb"].forEach {
     let nfaDesign = NFADesign(startState: 1, acceptStates: [4], ruleBook: ruleBook)
-    let can = nfaDesign.canAcceptsString($0)
-    print("\($0)\t\(can)")
+    let result = nfaDesign.canAcceptsString($0)
+    print("\($0)\t\(result)")
   }
 }
 
@@ -48,7 +48,7 @@ do {
   //                             └────│  6  │◀───┘
   //                                  └─────┘
 
-  print("accept string which length is a multiple of two or three:")
+  print("Accepts string which length is a multiple of two or three:")
 
   let rules = [
     FARule(state: 1, character: nil, nextState: 2),
@@ -64,8 +64,8 @@ do {
 
   ["a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa"].forEach {
     let nfaDesign = NFADesign(startState: 1, acceptStates: [2, 4], ruleBook: ruleBook)
-    let can = nfaDesign.canAcceptsString($0)
-    print("\($0)\t\(can)")
+    let result = nfaDesign.canAcceptsString($0)
+    print("\($0)\t\(result)")
   }
 }
 
@@ -80,7 +80,7 @@ do {
   //            │                   b                   │
   //            └───────────────────────────────────────┘
 
-  print("convert NFA to DFA:")
+  print("Convert NFA to DFA:")
 
   let rules = [
     FARule(state: 1, character: "a", nextState: 1),
@@ -100,7 +100,7 @@ do {
   let dfaDesign = simulation.generateDFADesign()
 
   ["aaa", "aab", "bbbabb"].forEach {
-    let can = dfaDesign.canAcceptsString($0)
-    print("\($0)\t\(can)")
+    let result = dfaDesign.canAcceptsString($0)
+    print("\($0)\t\(result)")
   }
 }

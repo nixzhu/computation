@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 
 import PackageDescription
 
@@ -13,8 +13,18 @@ let package = Package(
     .executable(name: "tm", targets: ["TM"]),
   ],
   targets: [
-    .target(name: "DFA"),
-    .target(name: "NFA"),
+    .target(
+      name: "DFA",
+      exclude: ["DFA.monopic"]
+    ),
+    .target(
+      name: "NFA",
+      exclude: [
+        "NFA.monopic",
+        "NFASimulation.monopic",
+        "freeMoveNFA.monopic",
+      ]
+    ),
     .target(name: "RE"),
     .target(name: "DPDA"),
     .target(name: "NPDA"),

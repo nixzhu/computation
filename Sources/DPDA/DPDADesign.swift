@@ -7,13 +7,14 @@ struct DPDADesign<State: Hashable> {
   let ruleBook: DPDARuleBook<State>
 
   func canAcceptsString(_ string: String) -> Bool {
-    var dpda = generatDPDA()
+    var dpda = generateDPDA()
     dpda.readString(string)
+
     return dpda.accepting
   }
 
-  func generatDPDA() -> DPDA<State> {
-    let startStack = Stack(contents: [bottomCharacter])
+  func generateDPDA() -> DPDA<State> {
+    let startStack = Stack([bottomCharacter])
     let startConfiguration = PDAConfiguration(state: startState, stack: startStack)
     return .init(
       currentConfiguration: startConfiguration,

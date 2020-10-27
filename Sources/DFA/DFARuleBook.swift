@@ -8,6 +8,6 @@ struct DFARuleBook<State: Hashable> {
   }
 
   private func ruleFor(state: State, character: Character) -> FARule<State>? {
-    rules.filter({ $0.canAppliesTo(state: state, character: character) }).first
+    rules.first(where: { $0.canAppliesTo(state: state, character: character) })
   }
 }

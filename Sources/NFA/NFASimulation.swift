@@ -3,9 +3,17 @@
 struct NFASimulation {
   let nfaDesign: NFADesign<Int>
 
+  func generateDFADesign() -> DFADesign<Set<Int>> {
+    let startState = nfaDesign.generateNFA().currentStates
+    let (states, rules) = discoverStatesAndRules(for: [startState])
+    let acceptStates = Set(states.filter({ nfaDesign.generateNFA(from: $0).accepting }))
+    return .init(startState: startState, acceptStates: acceptStates, ruleBook: .init(rules: rules))
+  }
+
   private func nextState(from state: Set<Int>, for character: Character) -> Set<Int> {
     var nfa = nfaDesign.generateNFA(from: state)
     nfa.readCharacter(character)
+
     return nfa.currentStates
   }
 
@@ -25,12 +33,5 @@ struct NFASimulation {
     } else {
       return discoverStatesAndRules(for: states.union(moreStates))
     }
-  }
-
-  func generateDFADesign() -> DFADesign<Set<Int>> {
-    let startState = nfaDesign.generateNFA().currentStates
-    let (states, rules) = discoverStatesAndRules(for: [startState])
-    let acceptStates = Set(states.filter({ nfaDesign.generateNFA(from: $0).accepting }))
-    return .init(startState: startState, acceptStates: acceptStates, ruleBook: .init(rules: rules))
   }
 }

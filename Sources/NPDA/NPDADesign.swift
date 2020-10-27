@@ -9,11 +9,12 @@ struct NPDADesign<State: Hashable> {
   func canAcceptsString(_ string: String) -> Bool {
     var npda = generateNPDA()
     npda.readString(string)
+
     return npda.accepting
   }
 
   func generateNPDA() -> NPDA<State> {
-    let startStack = Stack(contents: [bottomCharacter])
+    let startStack = Stack([bottomCharacter])
     let startConfiguration = PDAConfiguration(state: startState, stack: startStack)
     return .init(
       currentConfigurations: [startConfiguration],

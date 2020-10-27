@@ -1,18 +1,5 @@
 // @nixzhu (zhuhongxu@gmail.com)
 
-private class UniqueState {
-  static let shared = UniqueState()
-
-  private var count = 0
-
-  private init() {}
-
-  static func nextState() -> Int {
-    shared.count += 1
-    return shared.count
-  }
-}
-
 enum Pattern {
   case empty
   case literal(character: Character)
@@ -42,14 +29,6 @@ enum Pattern {
       return [firstPart, secondPart].map({ $0.bracket(`precedence`) }).joined(separator: "|")
     case .repeat(let pattern):
       return pattern.bracket(`precedence`) + "*"
-    }
-  }
-
-  private func bracket(_ outerPrecedence: Int) -> String {
-    if `precedence` < outerPrecedence {
-      return "(\(string))"
-    } else {
-      return string
     }
   }
 
@@ -101,7 +80,30 @@ enum Pattern {
     }
   }
 
+  private func bracket(_ outerPrecedence: Int) -> String {
+    if `precedence` < outerPrecedence {
+      return "(\(string))"
+    } else {
+      return string
+    }
+  }
+
   func canMatchesString(_ string: String) -> Bool {
     nfaDesign.canAcceptsString(string)
+  }
+}
+
+private class UniqueState {
+  static let shared = UniqueState()
+
+  private var count = 0
+
+  private init() {}
+
+  static func nextState() -> Int {
+    defer {
+      shared.count += 1
+    }
+    return shared.count
   }
 }

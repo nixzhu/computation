@@ -5,13 +5,14 @@ struct DFADesign<State: Hashable> {
   let acceptStates: Set<State>
   let ruleBook: DFARuleBook<State>
 
-  func generatDFA() -> DFA<State> {
+  func generateDFA() -> DFA<State> {
     .init(currentState: startState, acceptStates: acceptStates, ruleBook: ruleBook)
   }
 
   func canAcceptsString(_ string: String) -> Bool {
-    var dfa = generatDFA()
+    var dfa = generateDFA()
     dfa.readString(string)
+
     return dfa.accepting
   }
 }

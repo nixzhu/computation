@@ -16,12 +16,22 @@ struct DPDA<State: Hashable> {
     currentConfiguration == nil
   }
 
+  init(
+    currentConfiguration: PDAConfiguration<State>,
+    acceptStates: Set<State>,
+    ruleBook: DPDARuleBook<State>
+  ) {
+    self.currentConfiguration = ruleBook.followFreeMoves(for: currentConfiguration)
+    self.acceptStates = acceptStates
+    self.ruleBook = ruleBook
+  }
+
   mutating func readCharacter(_ character: Character) {
     guard let configuration = currentConfiguration else {
       return
     }
-    if let _nextConfiguration = ruleBook.nextConfiguration(from: configuration, for: character) {
-      currentConfiguration = ruleBook.followFreeMoves(for: _nextConfiguration)
+    if let nextConfiguration = ruleBook.nextConfiguration(from: configuration, for: character) {
+      currentConfiguration = ruleBook.followFreeMoves(for: nextConfiguration)
     } else {
       currentConfiguration = nil
     }
@@ -35,15 +45,5 @@ struct DPDA<State: Hashable> {
         break
       }
     }
-  }
-
-  init(
-    currentConfiguration: PDAConfiguration<State>,
-    acceptStates: Set<State>,
-    ruleBook: DPDARuleBook<State>
-  ) {
-    self.currentConfiguration = ruleBook.followFreeMoves(for: currentConfiguration)
-    self.acceptStates = acceptStates
-    self.ruleBook = ruleBook
   }
 }

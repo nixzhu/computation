@@ -7,7 +7,7 @@
 // ─────▶│  1  │─────▶│  2  │─────▶║  3  ║
 //       └─────┘      └─────┘      ╚═════╝
 
-print("accepts string which contains \"ab\":")
+print("Accepts string which contains `ab`:")
 
 let rules = [
   FARule(state: 1, character: "a", nextState: 2),
@@ -22,6 +22,6 @@ let ruleBook = DFARuleBook(rules: rules)
 
 ["a", "baa", "baba"].forEach {
   let dfaDesign = DFADesign(startState: 1, acceptStates: [3], ruleBook: ruleBook)
-  let can = dfaDesign.canAcceptsString($0)
-  print("\($0)\t\(can)")
+  let result = dfaDesign.canAcceptsString($0)
+  print("\($0)\t\(result)")
 }

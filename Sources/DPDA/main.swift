@@ -1,8 +1,8 @@
 // @nixzhu (zhuhongxu@gmail.com)
 
-// 识括号匹配
+// 识别括号匹配
 
-let configuration = PDAConfiguration(state: 1, stack: Stack(contents: ["$"]))
+let configuration = PDAConfiguration(state: 1, stack: Stack(["$"]))
 
 let rules = [
   PDARule(state: 1, character: "(", nextState: 2, popCharacter: "$", pushCharacters: ["b", "$"]),
@@ -23,5 +23,4 @@ let dpdaDesign = DPDADesign(
 print(dpdaDesign.canAcceptsString("(((((((((())))))))))"))
 print(dpdaDesign.canAcceptsString("()(())((()))(()(()))"))
 print(dpdaDesign.canAcceptsString("(()(()(()()(()()))()"))
-
 print(dpdaDesign.canAcceptsString("())"))

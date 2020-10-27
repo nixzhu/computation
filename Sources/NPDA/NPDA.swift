@@ -14,15 +14,6 @@ struct NPDA<State: Hashable> {
     return false
   }
 
-  mutating func readCharacter(_ character: Character) {
-    let configurations = ruleBook.nextConfigurations(from: currentConfigurations, for: character)
-    currentConfigurations = ruleBook.followFreeMoves(for: configurations)
-  }
-
-  mutating func readString(_ string: String) {
-    string.forEach { readCharacter($0) }
-  }
-
   init(
     currentConfigurations: Set<PDAConfiguration<State>>,
     acceptStates: Set<State>,
@@ -31,5 +22,14 @@ struct NPDA<State: Hashable> {
     self.currentConfigurations = ruleBook.followFreeMoves(for: currentConfigurations)
     self.acceptStates = acceptStates
     self.ruleBook = ruleBook
+  }
+
+  mutating func readCharacter(_ character: Character) {
+    let configurations = ruleBook.nextConfigurations(from: currentConfigurations, for: character)
+    currentConfigurations = ruleBook.followFreeMoves(for: configurations)
+  }
+
+  mutating func readString(_ string: String) {
+    string.forEach { readCharacter($0) }
   }
 }

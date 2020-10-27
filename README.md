@@ -8,7 +8,7 @@ Rewrite some Ruby code in this book (中译《计算的本质》) with Swift.
 swift build
 ```
 
-# Machines
+# Run
 
 - DFA, Deterministic Finite Automation (确定性有限自动机), `swift run dfa`
 - NFA, Nondeterministic Finite Automaton (非确定性有限自动机), `swift run nfa`
